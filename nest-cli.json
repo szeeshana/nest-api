@@ -1,0 +1,40 @@
+{
+  "language": "ts",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/demoTestApp/src",
+  "monorepo": true,
+  "root": "apps/demoTestApp",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/demoTestApp/tsconfig.app.json"
+  },
+  "projects": {
+    "demoTestApp": {
+      "type": "application",
+      "root": "apps/demoTestApp",
+      "entryFile": "main",
+      "sourceRoot": "apps/demoTestApp/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/demoTestApp/tsconfig.app.json"
+      }
+    },
+    "notification": {
+      "type": "application",
+      "root": "apps/notification",
+      "entryFile": "main",
+      "sourceRoot": "apps/notification/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/notification/tsconfig.app.json"
+      }
+    },
+    "elastic": {
+      "type": "application",
+      "root": "apps/elastic",
+      "entryFile": "main",
+      "sourceRoot": "apps/elastic/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/elastic/tsconfig.app.json"
+      }
+    }
+  }
+}

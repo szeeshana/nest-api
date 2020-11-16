@@ -1,0 +1,41 @@
+version: '3'
+services:
+  redis:
+    image: redis
+    container_name: demoTestApp-redis-server
+    restart: always
+    env_file:
+      - .development.env
+    ports:
+      - '6379:6379'
+  postgres:
+    image: postgres
+    container_name: demoTestApp-postgres
+    restart: always
+    env_file:
+      - .development.env
+    ports:
+      - '5432:5432'
+  app:
+    image: demoTestApp-backend-app
+    env_file:
+      - .development.env
+    build:
+      context: .
+      dockerfile: apps/demoTestApp/Dockerfile
+    container_name: demoTestApp-backend
+    ports:
+      - '3000:3000'
+      - '4300:4300'
+    links:
+      - postgres
+  notification:
+    image: notification-backend-app
+    env_file:
+      - .development.env
+    build:
+      context: .
+      dockerfile: apps/notification/Dockerfile
+    container_name: notification-backend
+    links:
+      - postgres
